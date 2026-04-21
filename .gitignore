@@ -1,0 +1,48 @@
+# Node.js / React / Electron
+node_modules/
+.npm/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+dist-electron/
+release/
+out/
+win-unpacked/
+mac/
+linux/
+
+# Python / FastAPI / PyInstaller
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+
+# Database / Local State / AI Models
+data/
+chroma/
+vector_store/
+*.sqlite3
+*.db
+*.bin
+*.onnx
+*.safetensors
+
+# Security & OS
+.env
+.env.local
+.env.development
+.env.production
+*.lock
+!package-lock.json
+!yarn.lock
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ── Design Tokens ─────────────────────────────────────────────────── */
+
+:root {
+  --sidebar-w: 240px;
+  --right-panel-w: 320px;
+  --topnav-h: 48px;
+
+  --surface-0: #0f1117;
+  --surface-1: #13151c;
+  --surface-2: #181a23;
+  --surface-3: #1e2030;
+  --border: #2a2d3a;
+
+  --accent: #6366f1;
+  --accent-text: #c0c1ff;
+  --accent-surface: rgba(99, 102, 241, 0.12);
+
+  --text-primary: #e2e4ea;
+  --text-secondary: #8b8fa3;
+  --text-muted: #565a6e;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--surface-0);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ── Material Symbols normalisation ────────────────────────────────── */
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 20;
+  font-size: 20px;
+  vertical-align: middle;
+  user-select: none;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
