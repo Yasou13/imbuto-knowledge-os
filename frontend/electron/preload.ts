@@ -4,16 +4,12 @@
 
 import { contextBridge, ipcRenderer } from "electron";
 
-const apiUrlArg = process.argv.find((arg) => arg.startsWith("--api-url="));
-const apiUrl = apiUrlArg ? apiUrlArg.split("=")[1] : undefined;
-
-const tokenArg = process.argv.find((arg) => arg.startsWith("--internal-token="));
-const internalToken = tokenArg ? tokenArg.split("=")[1] : undefined;
+const env = ipcRenderer.sendSync('get-env');
 
 contextBridge.exposeInMainWorld("imbuto", {
     platform: process.platform,
-    apiUrl: apiUrl,
-    internalToken: internalToken,
+    apiUrl: env.apiUrl,
+    internalToken: env.internalToken,
 });
 
 contextBridge.exposeInMainWorld("electron", {

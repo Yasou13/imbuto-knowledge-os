@@ -30,7 +30,6 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.mjs'),
             nodeIntegration: false,
             contextIsolation: true,
-            additionalArguments: [`--api-url=${process.env.API_URL || ""}`, `--internal-token=${internalToken}`],
         },
     });
 
@@ -43,8 +42,11 @@ function createWindow() {
 
 /* ── App lifecycle ─────────────────────────────────────────────────── */
 
-async function waitForBackend(url: string, maxAttempts = 20, intervalMs = 500): Promise<boolean> {
+async function waitForBackend(url: string, maxAttempts = 240, intervalMs = 500): Promise<boolean> {
     for (let i = 0; i < maxAttempts; i++) {
+        if (i > 0 && i % 10 === 0) {
+            console.log(`[Electron] Still waiting for backend to load AI models... (Attempt ${i}/${maxAttempts})`);
+        }
         try {
             const res = await fetch(url);
             if (res.status === 200) {
@@ -84,6 +86,13 @@ app.whenReady().then(async () => {
 
     ipcMain.on('show-notification', (_, title, body) => {
         new Notification({ title, body }).show();
+    });
+
+    ipcMain.on('get-env', (event) => {
+        event.returnValue = {
+            apiUrl: process.env.API_URL || "",
+            internalToken: internalToken
+        };
     });
 
     const isBackendReady = await waitForBackend("http://127.0.0.1:8000/health");
